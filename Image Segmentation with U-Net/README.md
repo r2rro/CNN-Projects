@@ -113,3 +113,8 @@ For the second half:
 * At each step, use half the number of filters of the previous block
 * conv9 is a `Conv2D layer` with `ReLU` activation, He normal initializer, `same` padding
 * Finally, conv10 is a Conv2D that takes the number of classes as the filter, a kernel size of 1, and `"same"` padding. The output of conv10 is the output of your model.
+
+# References:
+1- [Fully Convolutional Architectures for Multi-Class Segmentation in Chest Radiographs](https://arxiv.org/abs/1701.08816) (Novikov, Lenis, Major, Hladůvka, Wimmer & Bühler, 2017)
+2- [Automatic Brain Tumor Detection and Segmentation Using U-Net Based Fully Convolutional Networks](https://arxiv.org/abs/1705.03820) (Dong, Yang, Liu, Mo & Guo, 2017)
+3- [U-Net: Convolutional Networks for Biomedical Image Segmentation](https://arxiv.org/abs/1505.04597) (Ronneberger, Fischer & Brox, 2015)
