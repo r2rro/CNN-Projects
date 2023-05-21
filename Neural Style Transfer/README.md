@@ -6,7 +6,7 @@ For most of algorithm such face recognition we optimize a cost function to get a
 
 Neural Style Transfer (NST) is one of the most fun and interesting optimization techniques in deep learning. It merges two images, namely: a "content" image (C) and a "style" image (S), to create a "generated" image (G). The generated image G combines the "content" of the image C with the "style" of image S.
 
-In this code, we are going to combine a photo of the Science World in Vancouver,BC (content image C) with the style of Van Gogh's Starry Night Over the Rhône painting (content image S) to generate the following image:
+In this code, we are going to combine a photo of the Science World in Vancouver, BC (content image C) with the style of Van Gogh's Starry Night Over the Rhône painting (content image S) to generate the following image:
 
 <p align="center">
   <img width="800" src="https://github.com/r2rro/CNN-Projects/blob/main/Neural%20Style%20Transfer/images/generated.png" alt="NST-science">
