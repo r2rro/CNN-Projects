@@ -113,15 +113,3 @@ For the second half:
 * At each step, use half the number of filters of the previous block
 * conv9 is a `Conv2D layer` with `ReLU` activation, He normal initializer, `same` padding
 * Finally, conv10 is a Conv2D that takes the number of classes as the filter, a kernel size of 1, and `"same"` padding. The output of conv10 is the output of your model.
-
-#### 1.4 - Loss Function
-In semantic segmentation, you need as many masks as you have object classes. In the dataset you're using, each pixel in every mask has been assigned a single integer probability that it belongs to a certain class, from 0 to num_classes-1. The correct class is the layer with the higher probability.
-
-This is different from `categorical crossentropy`, where the labels should be one-hot encoded (just 0s and 1s). Here, you'll use sparse categorical crossentropy as your loss function, to perform pixel-wise multiclass prediction. Sparse categorical crossentropy is more efficient than other loss functions when you're dealing with lots of classes.
-
-#### 1.5 - Dataset Handling
-
-Below, define a function that allows you to display both an input image, and its ground truth: the true mask. The true mask is what your trained model output is aiming to get as close to as possible.
-
-## 2 - Train the Model
-In this stage we train the model, and by defining a function uses `tf.argmax` in the axis of the number of classes to return the index with the largest value and merge the prediction into a single image. Finally we can check our predicted masks against the true mask and the original input image to chack final results.
