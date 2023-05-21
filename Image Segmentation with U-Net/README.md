@@ -5,7 +5,7 @@ We are going to build our own U-Net, a type of CNN designed for quick, precise i
 This type of image classification is called semantic image segmentation. It's similar to object detection in that both ask the question: "What objects are in this image and where in the image are those objects located?," but where object detection labels objects with bounding boxes that may include pixels that aren't part of the object, semantic image segmentation allows you to predict a precise mask for each object in the image by labeling each pixel in the image with its corresponding class:
 
 <p align="center">
-  <img width="500" src="https://github.com/r2rro/CNN-Projects/blob/main/Image%20Segmentation%20with%20U-Net/images/carseg.png" alt="Example of segmented image">
+  <img width="500" src="https://github.com/r2rro/CNN-Projects/blob/main/Image%20Segmentation%20with%20U-Net/images/imseg.png" alt="Example of segmented image">
 </p>
 
  Region-specific labeling is a pretty crucial consideration for self-driving cars, which require a pixel-perfect understanding of their environment so they can change lanes and avoid other cars, or any number of traffic obstacles that can put peoples' lives in danger.
@@ -116,5 +116,7 @@ For the second half:
 
 # References:
 1- [Fully Convolutional Architectures for Multi-Class Segmentation in Chest Radiographs](https://arxiv.org/abs/1701.08816) (Novikov, Lenis, Major, Hladůvka, Wimmer & Bühler, 2017)
+
 2- [Automatic Brain Tumor Detection and Segmentation Using U-Net Based Fully Convolutional Networks](https://arxiv.org/abs/1705.03820) (Dong, Yang, Liu, Mo & Guo, 2017)
+
 3- [U-Net: Convolutional Networks for Biomedical Image Segmentation](https://arxiv.org/abs/1505.04597) (Ronneberger, Fischer & Brox, 2015)
