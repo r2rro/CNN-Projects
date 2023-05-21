@@ -18,8 +18,6 @@ from tensorflow.keras.layers import Dropout
 from tensorflow.keras.layers import Conv2DTranspose
 from tensorflow.keras.layers import concatenate
 
-from test_utils import summary, comparator
-
 
 # loading and splitting the data:
 
