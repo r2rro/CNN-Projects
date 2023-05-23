@@ -1,34 +1,32 @@
 # Neural-Style-Transfer
-The Neural Style Transfer algorithm created by [Gatys et al. (2015)](https://arxiv.org/abs/1508.06576).
-For most of algorithm such face recognition we optimize a cost function to get a set of parameter values. With Neural Style Transfer, we'll get to optimize a cost function to get pixel values.
+The Neural Style Transfer algorithm in this project is absed on the work of [Gatys et al. (2015)](https://arxiv.org/abs/1508.06576).
 
-## 1- Problem Statment
+## Problem Statment
 
-Neural Style Transfer (NST) is one of the most fun and interesting optimization techniques in deep learning. It merges two images, namely: a "content" image (C) and a "style" image (S), to create a "generated" image (G). The generated image G combines the "content" of the image C with the "style" of image S.
+Neural Style Transfer (NST) merges two images, namely: a "content" image (C) and a "style" image (S), to create a "generated" image (G). The generated image G combines the "content" of the image C with the "style" of image S.
 
-In this code, we are going to combine a photo of the Science World in Vancouver, BC (content image C) with the style of Van Gogh's Starry Night Over the Rhône painting (content image S) to generate the following image:
+In this project, we are going to combine a photo of the Science World in Vancouver, BC (content image C) with the style of Van Gogh's Starry Night Over the Rhône painting (content image S) to generate the following result:
 
 <p align="center">
   <img width="800" src="https://github.com/r2rro/CNN-Projects/blob/main/Neural%20Style%20Transfer/images/generated.png" alt="NST-science">
 </p>
 
-Let's get started!
 
-## 2- Transfer Learning
+## Transfer Learning Algorithm
 
-Neural Style Transfer (NST) uses a previously trained convolutional network, and builds on top of that. The idea of using a network trained on a different task and applying it to a new task is called transfer learning.
+Neural Style Transfer (NST) uses a previously trained convolutional network, and builds on top of that.
 
-We will be using the the epynomously named VGG network from the [original NST paper](https://arxiv.org/abs/1508.06576) published by the Visual Geometry Group at University of Oxford in 2014. Specifically, we'll use VGG-19, a 19-layer version of the VGG network. This model has already been trained on the very large ImageNet database, and has learned to recognize a variety of low level features (at the shallower layers) and high level features (at the deeper layers).
+We will be using the epynomously named VGG network from the [original NST paper](https://arxiv.org/abs/1508.06576) published by the Visual Geometry Group at University of Oxford in 2014. Specifically, we'll use VGG-19, a 19-layer version of the VGG network. This model has already been trained on the very large ImageNet database, and has learned to recognize a variety of low level features (at the shallower layers) and high level features (at the deeper layers).
 
-## 3- Neural Style Transfer (NST)
+## Neural Style Transfer (NST)
 Next, we will be building the Neural Style Transfer (NST) algorithm in three steps:
 * First, we will build the content cost function <img src="https://render.githubusercontent.com/render/math?math=J_{content}(C,G)">
 * Second, we will build the style cost function <img src="https://render.githubusercontent.com/render/math?math=J_{style}(S,G)">
 * Finally, we'll put it all together to get <img src="https://render.githubusercontent.com/render/math?math=\alpha J_{content}(C,G) + \beta J_{style}(S,G) ">
 
-#### 3.1- Computing the Content Cost
+#### Computing the Content Cost
 
-#### 3.1.1- Make Generated Image G Match the Content of Image C 
+#### Make Generated Image G Match the Content of Image C 
 One goal we should aim for when performing NST is for the content in generated image G to match the content of image C. To do so, we'll need an understanding of shallow versus deep layers :
  * The shallower layers of a ConvNet tend to detect lower-level features such as edges and simple textures.
  * The deeper layers tend to detect higher-level features such as more complex textures and object classes.
@@ -49,7 +47,7 @@ We need the "generated" image <img src="https://render.githubusercontent.com/ren
 * Repeat this process with the image <img src="https://render.githubusercontent.com/render/math?math=G">: Set <img src="https://render.githubusercontent.com/render/math?math=G"> as the input, and run forward progation.
 * Let  <img src="https://render.githubusercontent.com/render/math?math=a^{(G)}">  be the corresponding hidden layer activation.
 
-#### 3.1.2- Content Cost Function <img src="https://render.githubusercontent.com/render/math?math=J_{content}(C,G)">
+#### Content Cost Function <img src="https://render.githubusercontent.com/render/math?math=J_{content}(C,G)">
 One goal we should aim for when performing NST is for the content in generated image G to match the content of image <img src="https://render.githubusercontent.com/render/math?math=C">. A method to achieve this is to calculate the content cost function, which will be defined as:
 <p align = "center">
 <img src="https://render.githubusercontent.com/render/math?math=J_{content}(C,G) = \frac{1}{4\times n_H \times n_W \times n_C}\sum_{\text{all entries}}(a^{(C)}-a^{(G)})^2">
@@ -64,10 +62,10 @@ One goal we should aim for when performing NST is for the content in generated i
   <img width="700" src="https://github.com/r2rro/CNN-Projects/blob/main/Neural%20Style%20Transfer/images/NST_LOSS.png" alt="unrolled version">
 </p>
 
-#### 3.2- Computing the Style Cost
+#### Computing the Style Cost
 Let's see how you can now define a "style" cost function <img src="https://render.githubusercontent.com/render/math?math=J_{style}(S,G)">!
 
-#### 3.2.1- Style Matrix
+#### Style Matrix
 **Gram matrix**
 * The style matrix is also called a "Gram matrix."
 * In linear algebra, the Gram matrix <img src="https://render.githubusercontent.com/render/math?math=G"> of a set of vectors <img src="https://render.githubusercontent.com/render/math?math=(\nu_1, \dots, \nu_n)"> is the matrix of dot products, whose entries are  
@@ -110,7 +108,7 @@ Our next goal will be to minimize the distance between the Gram matrix of the "s
 * <img src="https://render.githubusercontent.com/render/math?math=G_{gram}^{(G)}"> Gram matrix of the "generated" image.
 * Make sure you remember that this cost is computed using the hidden layer activations for a particular hidden layer in the network <img src="https://render.githubusercontent.com/render/math?math=a^{[l]}">.
 
-#### 3.3 - Defining the Total Cost to Optimize
+#### Defining the Total Cost to Optimize
 
 Finally, we will create a cost function that minimizes both the style and the content cost. The formula is:
 
@@ -118,11 +116,10 @@ Finally, we will create a cost function that minimizes both the style and the co
 <img src="https://render.githubusercontent.com/render/math?math=J(G)=\alpha J_{content}(C,G)\dotplus \beta J_{style}(S,G)">
  </p>
  
- ## 4- Solving the Optimization Problem
- Finally, we get to put everything together to implement Neural Style Transfer!
- Here's what our program be able to do:
+ ## Solving the Optimization Problem
+ Finally, we get to put everything together to implement Neural Style Transfer:
  
- 1. Load the content image
+1. Load the content image
 2. Load the style image
 3. Randomly initialize the image to be generated
 4. Load the VGG19 model
